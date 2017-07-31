@@ -2,6 +2,8 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.4.
 
+ Lots of flase starts in vanilla JS and react.js, this has been my project for experimenting in a big-boy front-end framework. Trying to create a music player that only plays music slowly.  Later versions will add reverb.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

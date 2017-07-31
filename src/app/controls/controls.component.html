@@ -1,0 +1,20 @@
+<i class="fa fa-backward fa-5x" aria-hidden="true"></i>
+<i class="fa fa-play-circle-o fa-5x" id="playPause" aria-hidden="true" (click)="playPause()" ></i>
+<i class="fa fa-forward fa-5x" (click)="nextTrack()" aria-hidden="true"></i>
+<audio #audioplayer
+       [src]="list"
+       [volume]="volume"
+       [loop]="loop"
+       [preload]="preload"
+       [muted]="muted"
+>
+
+</audio>
+
+
+
+<button type="button" (click)="playPause()" *ngIf="playButton">Play</button>
+<button type="button" (click)="pause()" *ngIf="pauseButton">Pause</button>
+<button type="button" (click)="previousTrack()" *ngIf="selectableButton">Previous</button>
+<button type="button" (click)="nextTrack()" *ngIf="selectableButton">Next</button>
+<button type="button" (click)="muteVideo()" *ngIf="muteButton">Mute</button>

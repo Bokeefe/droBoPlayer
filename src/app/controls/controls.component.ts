@@ -69,7 +69,10 @@ export class AudioComponent implements AfterViewInit, OnInit{
 
     ngOnInit() {
         /** Init player with the first occurrence of src's array. */
-        if (this.src.length) { this.list = this.src[this.startPosition]; }
+        if (this.src.length) { 
+            this.list = this.src[this.startPosition];
+            
+     }
     }
 
     ngAfterViewInit() {
@@ -111,12 +114,18 @@ export class AudioComponent implements AfterViewInit, OnInit{
         this.player.nativeElement.addEventListener('progress', (data) => this.downloading.emit(true));
     }
     /** Set programmatically audio controls. */
-    play(): void {
-        this.player.nativeElement.play();
-    }
 
+    getPlayBackSpeed():void{
+        let rate = JSON.parse((<HTMLInputElement>document.getElementById('slider')).value)*.01;
+        console.log(rate);
+    
+
+        console.log((<HTMLInputElement>document.getElementById('slider')).value);   
+        this.player.nativeElement.playbackRate = .7;
+    }
     playPause(): void {
         if(this.player.nativeElement.paused){
+            this.player.nativeElement.playbackRate = .5;
             this.player.nativeElement.play();
             $('#playPause').toggleClass('fa-pause-circle-o');
             
@@ -124,10 +133,6 @@ export class AudioComponent implements AfterViewInit, OnInit{
             this.player.nativeElement.pause();
             $('#playPause').toggleClass('fa-pause-circle-o');
         }
-    }
-
-    pause(): void {
-        this.player.nativeElement.pause();
     }
 
     muteVideo(): void {

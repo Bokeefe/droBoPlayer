@@ -152,6 +152,8 @@ export class AudioComponent implements AfterViewInit, OnInit{
 
         /** Else, go to the next element in track's array. */
         this.player.nativeElement.src = this.src[this.src.indexOf(this.player.nativeElement.src) + 1];
+            //this.src[this.src.indexOf(this.player.nativeElement.src) + 1]
+        console.dir(this.src.indexOf(this.player.nativeElement.src));
     }
 
     /** Audio Transitions */

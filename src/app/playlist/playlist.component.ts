@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Http, HttpModule} from '@angular/http';
 import { PlaylistService } from '../playlist.service';
 import 'rxjs/Rx';
-const songs = "loading...";
+let songs = ["loading..."];
 @Component({
   selector: 'app-playlist',
   templateUrl: './playlist.component.html',
@@ -10,9 +10,20 @@ const songs = "loading...";
 })
 
 export class PlaylistComponent implements OnInit {
-  constructor(private playlist:PlaylistService) { 
-    console.log(this.playlist.getSongs());
+  songs = songs;
+  constructor(private playlist:PlaylistService) {
+   this.playlist.getSongs().subscribe(
+        (data) => {
+        songs = data;
+        },
+        (err) =>  console.log("Error Loging In:",err)
+      );
+
   
+  }
+  hello(){
+    return songs;
+
   }
   ngOnInit() {
   }

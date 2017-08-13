@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {Http, HttpModule} from '@angular/http';
 import { PlaylistService } from '../playlist.service';
-  
-const songs = ['song1','song2','song3'];
-
+import 'rxjs/Rx';
+const songs = "loading...";
 @Component({
   selector: 'app-playlist',
   templateUrl: './playlist.component.html',
@@ -10,12 +10,10 @@ const songs = ['song1','song2','song3'];
 })
 
 export class PlaylistComponent implements OnInit {
-   songs = songs;
-
-  constructor() { 
-    console.log(this);
+  constructor(private playlist:PlaylistService) { 
+    console.log(this.playlist.getSongs());
+  
   }
-
   ngOnInit() {
   }
 

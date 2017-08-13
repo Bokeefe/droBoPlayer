@@ -12,27 +12,37 @@ const fs = require("fs");
     res.sendFile(__dirname + '/src/index.html');
     });
 
-    console.log(__dirname+'/dist/');
 
     const srcpath = '/Users/krenshaw/workplace/droBoPlayer/src/assets/audio/';
     const tracks = fs.readdirSync(srcpath).filter(item => !(/(^|\/)\.[^\/\.]/g).test(item));
-    const tags = tracks.map((item)=>{return nodeID3.read(srcpath+item);});
-    const genres = tags.map((item)=>{ return item.genre; });
+    const tags = tracks.map((item)=>{
+      let info =  nodeID3.read(srcpath+item);
+      info.srcpath = srcpath+item;
+      delete info.trackNumber;
+      delete info.encodedBy;
+      delete info.comment;
+      delete info.performerInfo;
+      delete info.textWriter;
+      delete info.image;
+  
+      return info;
+    });
+    let genres = tags.map((item)=>{ return item.genre; });
 
-    uniqueArray = genres.filter(function(item, pos) {
+    genres = genres.filter(function(item, pos) {
       return genres.indexOf(item) == pos;
     });
-    console.log(tags);
 
+    // console.log(JSON.stringify(tags));
+     console.log(JSON.stringify(genres));
 
-    // app.post('/getTracks', function(req, res){
-    //   const tracks = fs.readdirSync('./audio/Country/');
-    //   const genres =  getDirectories("./audio/");
-    //   const data = {tracks:tracks, genres:genres};
+    app.post('/getTracks', function(req, res){
 
-    //   res.send(data);
+      const data = {tracks:JSON.stringify(tags), genres:JSON.stringify(genres)};
 
-    // });
+      res.send(data);
+
+    });
 app.listen(3000, function () {
   console.log('app listening on port 3000!');
 });

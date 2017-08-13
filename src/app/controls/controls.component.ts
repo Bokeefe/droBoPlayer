@@ -117,10 +117,8 @@ export class AudioComponent implements AfterViewInit, OnInit{
 
     getPlayBackSpeed():void{
         let rate = JSON.parse((<HTMLInputElement>document.getElementById('slider')).value)*.01;
-        console.log(rate);
     
 
-        console.log((<HTMLInputElement>document.getElementById('slider')).value);   
         this.player.nativeElement.playbackRate = .7;
     }
     playPause(): void {
@@ -153,7 +151,6 @@ export class AudioComponent implements AfterViewInit, OnInit{
         /** Else, go to the next element in track's array. */
         this.player.nativeElement.src = this.src[this.src.indexOf(this.player.nativeElement.src) + 1];
             //this.src[this.src.indexOf(this.player.nativeElement.src) + 1]
-        console.dir(this.src.indexOf(this.player.nativeElement.src));
     }
 
     /** Audio Transitions */

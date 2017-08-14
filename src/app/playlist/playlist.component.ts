@@ -22,7 +22,7 @@ export class PlaylistComponent implements OnInit {
   
   }
   hello(){
-    return songs;
+    return JSON.stringify(songs[0]);
 
   }
   ngOnInit() {

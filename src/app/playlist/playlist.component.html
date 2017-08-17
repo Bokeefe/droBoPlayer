@@ -1,3 +1,10 @@
-<ul> 
-    <li>{{this.hello()}}</li>
-</ul>
+
+<table class="table">
+   <tbody>
+      <tr *ngFor="let song of songs; let i = index;" >
+        <td>{{i+1}}</td>
+        <td>{{song.artist}}</td>
+        <td>{{song.song}}</td>
+      </tr>
+    </tbody>
+</table>

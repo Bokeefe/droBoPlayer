@@ -1,9 +1,9 @@
  <nav class="navbar navbar-toggleable-sm navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
     <ul class="nav navbar-nav">
-      <li><a href="#"><i class="fa fa-backward fa-5x" aria-hidden="true"></i></a></li>
-      <li><a href="#"><i class="fa fa-play-circle-o fa-5x" id="playPause" aria-hidden="true" (click)="playPause()" ></i></a></li>
-      <li><a href="#"><i class="fa fa-forward fa-5x" (click)="nextTrack()" aria-hidden="true"></i></a></li>
+      <li><a href="#"><i class="fa fa-backward " aria-hidden="true"></i></a></li>
+      <li><a href="#"><i class="fa fa-play-circle-o " id="playPause" aria-hidden="true" (click)="playPause()" ></i></a></li>
+      <li><a href="#"><i class="fa fa-forward" (click)="nextTrack()" aria-hidden="true"></i></a></li>
       <li></li>
     </ul><br>
     <input id="slider" (change)="getPlayBackSpeed()" value="50" type="range" min="50" max="100" >
@@ -21,4 +21,4 @@
 <button type="button" (click)="pause()" *ngIf="pauseButton">Pause</button>
 <button type="button" (click)="previousTrack()" *ngIf="selectableButton">Previous</button>
 <button type="button" (click)="nextTrack()" *ngIf="selectableButton">Next</button>
-<button type="button" (click)="muteVideo()" *ngIf="muteButton">Mute</button>   
+<button type="button" (click)="muteVideo()" *ngIf="muteButton">Mute</button>

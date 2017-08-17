@@ -29,7 +29,7 @@ export class AudioComponent implements AfterViewInit, OnInit{
     @Input() selectableButton: boolean = false;
     @Input() muteButton: boolean = false;
     /** Array of audio tracks.*/
-    @Input() src: Array<string> = ['../assets/audio/nothing.mp3','../assets/audio/next.mp3'];
+    @Input() src: Array<string> = ['../../assets/audio/09. The Road Of No Return.mp3'];
     /** Display or not the controls, default: true */
     @Input() controls: boolean = true;
     /** Set autoplay status, default true. */
@@ -69,9 +69,9 @@ export class AudioComponent implements AfterViewInit, OnInit{
 
     ngOnInit() {
         /** Init player with the first occurrence of src's array. */
-        if (this.src.length) { 
+        if (this.src.length) {
             this.list = this.src[this.startPosition];
-            
+
      }
     }
 
@@ -117,7 +117,7 @@ export class AudioComponent implements AfterViewInit, OnInit{
 
     getPlayBackSpeed():void{
         let rate = JSON.parse((<HTMLInputElement>document.getElementById('slider')).value)*.01;
-    
+
 
         this.player.nativeElement.playbackRate = .7;
     }
@@ -126,7 +126,7 @@ export class AudioComponent implements AfterViewInit, OnInit{
             this.player.nativeElement.playbackRate = .5;
             this.player.nativeElement.play();
             $('#playPause').toggleClass('fa-pause-circle-o');
-            
+
         }else{
             this.player.nativeElement.pause();
             $('#playPause').toggleClass('fa-pause-circle-o');

@@ -2,7 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import {Http, HttpModule} from '@angular/http';
 import { PlaylistService } from '../playlist.service';
 import 'rxjs/Rx';
-let songs = ["loading..."];
+let songs = [
+  {"artist":"Falco",
+    "song":"Rock me Amadaeus"},
+  {"artist":"jimi Hendrix",
+    "song":"friggin experience this"},
+  {"artist":"Sabbath",
+    "song":"bat eaters"}
+];
+
 @Component({
   selector: 'app-playlist',
   templateUrl: './playlist.component.html',
@@ -18,14 +26,9 @@ export class PlaylistComponent implements OnInit {
         },
         (err) =>  console.log("Error Loging In:",err)
       );
-
-  
   }
-  hello(){
-    return JSON.stringify(songs[0]);
 
-  }
-  ngOnInit() {
+    ngOnInit() {
   }
 
 }

@@ -1,16 +1,12 @@
-
-li{
+table{
+  margin-top:-20px;
+}
+td{
     font-size:24px;
-    list-style-type: none;
-    border-radius:10px;
     padding:3px;
     margin:0px 10px 1px 0px;
 
 }
-li:hover {
+tr:hover {
     background: lightgrey;
-}
-li:nth-child(1) {
-    font-weight:400;
-    font-size: 36px;
 }

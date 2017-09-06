@@ -2,14 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Http, HttpModule} from '@angular/http';
 import { PlaylistService } from '../playlist.service';
 import 'rxjs/Rx';
-let songs = [
-  {"artist":"Falco",
-    "song":"Rock me Amadaeus"},
-  {"artist":"jimi Hendrix",
-    "song":"friggin experience this"},
-  {"artist":"Sabbath",
-    "song":"bat eaters"}
-];
+import { AllSongs } from '../../assets/dummy';
+import { AudioComponent } from '../controls/controls.component';
 
 @Component({
   selector: 'app-playlist',
@@ -18,17 +12,18 @@ let songs = [
 })
 
 export class PlaylistComponent implements OnInit {
-  songs = songs;
-  constructor(private playlist:PlaylistService) {
-   this.playlist.getSongs().subscribe(
-        (data) => {
-        songs = data;
-        },
-        (err) =>  console.log("Error Loging In:",err)
-      );
+      songs = AllSongs;
+      constructor(public audio:AudioComponent){
+        console.log(this.audio);
+      }
+      ngOnInit() {
+    }
+      newSong(i){
+        
+        console.log(this.songs[i].srcpath);
+      }
   }
 
-    ngOnInit() {
-  }
 
-}
+
+

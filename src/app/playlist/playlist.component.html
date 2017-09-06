@@ -1,10 +1,10 @@
 
 <table class="table">
    <tbody>
-      <tr *ngFor="let song of songs; let i = index;" >
+      <tr *ngFor="let song of songs; let i = index;" (click)="newSong(i)" >
         <td>{{i+1}}</td>
         <td>{{song.artist}}</td>
-        <td>{{song.song}}</td>
+        <td>{{song.title}}</td>
       </tr>
     </tbody>
 </table>

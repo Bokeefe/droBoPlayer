@@ -1,5 +1,6 @@
 import {Component, Input, Output, EventEmitter, ViewChild, AfterViewInit, OnInit} from '@angular/core';
 import $ from 'jquery/dist/jquery';
+import { AllSongs } from '../../assets/dummy';
 
 function _windowWrapper() {
     return window;
@@ -18,6 +19,7 @@ export class AudioComponent implements AfterViewInit, OnInit{
     private interval: any;
 
     private list: string;
+
     /**
      * @Input -> custom properties.
      *
@@ -29,7 +31,8 @@ export class AudioComponent implements AfterViewInit, OnInit{
     @Input() selectableButton: boolean = false;
     @Input() muteButton: boolean = false;
     /** Array of audio tracks.*/
-    @Input() src: Array<string> = ['../../assets/audio/09. The Road Of No Return.mp3'];
+    songs = AllSongs;
+    @Input() src: Array<string> = ['../../assets/audio/nothing.mp3'];
     /** Display or not the controls, default: true */
     @Input() controls: boolean = true;
     /** Set autoplay status, default true. */
@@ -119,17 +122,21 @@ export class AudioComponent implements AfterViewInit, OnInit{
         let rate = JSON.parse((<HTMLInputElement>document.getElementById('slider')).value)*.01;
 
 
-        this.player.nativeElement.playbackRate = .7;
+        this.player.nativeElement.playbackRate = .5;
     }
-    playPause(): void {
-        if(this.player.nativeElement.paused){
-            this.player.nativeElement.playbackRate = .5;
-            this.player.nativeElement.play();
-            $('#playPause').toggleClass('fa-pause-circle-o');
-
-        }else{
-            this.player.nativeElement.pause();
-            $('#playPause').toggleClass('fa-pause-circle-o');
+    playPause(track): void {
+        if(track){
+            console.log(track);
+        } else {
+            if(this.player.nativeElement.paused){
+                this.player.nativeElement.playbackRate = .5;
+                this.player.nativeElement.play();
+                $('#playPause').toggleClass('fa-pause-circle-o');
+    
+            }else{
+                this.player.nativeElement.pause();
+                $('#playPause').toggleClass('fa-pause-circle-o');
+            }
         }
     }
 

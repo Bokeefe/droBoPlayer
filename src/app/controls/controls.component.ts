@@ -1,6 +1,6 @@
 import {Component, Input, Output, EventEmitter, ViewChild, AfterViewInit, OnInit} from '@angular/core';
 import $ from 'jquery/dist/jquery';
-import { AllSongs } from '../../assets/dummy';
+import { PlaylistService } from  '../playlist.service';
 
 function _windowWrapper() {
     return window;
@@ -26,12 +26,17 @@ export class AudioComponent implements AfterViewInit, OnInit{
      */
 
     /** Programmatically buttons. */
+    constructor(public playlist:PlaylistService){
+        console.dir(this.playlist.songs[0].srcpath);
+    }
+    songs = this.playlist.songs;
+    
     @Input() playButton: boolean = false;
     @Input() pauseButton: boolean = false;
     @Input() selectableButton: boolean = false;
     @Input() muteButton: boolean = false;
     /** Array of audio tracks.*/
-    songs = AllSongs;
+    
     @Input() src: Array<string> = ['../../assets/audio/nothing.mp3'];
     /** Display or not the controls, default: true */
     @Input() controls: boolean = true;
@@ -60,7 +65,7 @@ export class AudioComponent implements AfterViewInit, OnInit{
      * @type {EventEmitter}
      */
     /** Emit the playlist. */
-    @Output() playlist = new EventEmitter();
+    //@Output() playlist = new EventEmitter();
     /** Emit informations on the current video. */
     @Output() current = new EventEmitter();
     /** Emit the progress status of audio dowloading. */
@@ -205,7 +210,7 @@ export class AudioComponent implements AfterViewInit, OnInit{
      * Emitters
      */
     emitPlayList(): void {
-        this.playlist.emit(this.src);
+        //this.playlist.emit(this.src);
     }
 
     emitCurrentTrack(): void {
@@ -218,4 +223,10 @@ export class AudioComponent implements AfterViewInit, OnInit{
             volume: this.player.nativeElement.volume
         });
     }
+    newSong(i){
+        
+        console.log(i);
+        
+
+      }
 }

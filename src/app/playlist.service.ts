@@ -1,16 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Http, HttpModule } from '@angular/http';
+import { AllSongs } from '../assets/dummy';
 
 @Injectable()
 export class PlaylistService {
- constructor(private http:Http) { 
-        this.http = http
-
+  songs = AllSongs;
+  constructor() { 
+  
+  
   }
-    getSongs () {
 
-    return this.http.get("../assets/dummy.json")
-    .map(res =>  res.json())
-
-  }
+  
 }

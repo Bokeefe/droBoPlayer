@@ -8,6 +8,9 @@ export class PlaylistService {
   
   
   }
+  newSong(i){
+    console.log(this.songs[i]);
 
+  }
   
 }

@@ -17,7 +17,6 @@ export class AudioComponent implements AfterViewInit, OnInit{
     private timeout: any;
     private startTransition: any;
     private interval: any;
-
     private list: string;
 
     /**
@@ -27,7 +26,7 @@ export class AudioComponent implements AfterViewInit, OnInit{
 
     /** Programmatically buttons. */
     constructor(public playlist:PlaylistService){
-        console.dir(this.playlist.songs[0].srcpath);
+        console.log(this.songs[0].srcpath)
     }
     songs = this.playlist.songs;
     

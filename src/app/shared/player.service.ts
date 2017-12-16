@@ -1,6 +1,11 @@
-import {Component, Input, Output, EventEmitter, ViewChild, AfterViewInit, OnInit} from '@angular/core';
-import $ from 'jquery/dist/jquery';
-import { PlaylistService } from  '../shared/playlist.service';
+// angular
+import { Injectable, Input, Output, Component, EventEmitter, ViewChild } from '@angular/core';
+
+// services
+import {PlaylistService} from './playlist.service';
+
+declare var jquery:any;
+declare var $ :any;
 
 function _windowWrapper() {
     return window;
@@ -12,7 +17,8 @@ function _windowWrapper() {
     providers:[PlaylistService]
 })
 
-export class AudioComponent implements AfterViewInit, OnInit{
+@Injectable()
+export class PlayerSevice {
 
     private window: any = _windowWrapper();
     private timeout: any;
@@ -237,4 +243,5 @@ export class AudioComponent implements AfterViewInit, OnInit{
         
 
       }
+
 }

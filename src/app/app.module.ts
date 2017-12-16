@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { AudioComponent } from './controls/controls.component';
 import { PlaylistComponent } from './playlist/playlist.component';
 import { FooterComponent } from './footer/footer.component';
-import { PlaylistService } from './playlist.service';
+import { PlaylistService } from './shared/playlist.service';
 
 @NgModule({
   declarations: [

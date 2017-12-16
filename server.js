@@ -33,8 +33,14 @@ const fs = require("fs");
       return genres.indexOf(item) == pos;
     });
 
-    tags = JSON.stringify(tags);
-    fs.writeFileSync('./src/assets/dummy.json',tags);
+    tags = 'export const AllSongs = '+JSON.stringify(tags);
+
+    function writeSongData(filePath, songData){
+      fs.writeFileSync(filePath,songData);
+      console.log('wrote to: '+filePath);
+    }
+    writeSongData('./src/assets/dummy.ts',tags);
+
     // console.log(JSON.stringify(genres));
 
     // app.post('/getTracks', function(req, res){
@@ -44,6 +50,6 @@ const fs = require("fs");
     //   res.send(data);
 
     // });
-app.listen(4200, function () {
-  console.log('app listening on port 4200!');
+app.listen(8080, function () {
+  console.log('app listening on port 8080!');
 });

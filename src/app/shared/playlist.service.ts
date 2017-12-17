@@ -7,7 +7,6 @@ export class PlaylistService {
 public songs :any;  
   constructor() { 
     this.songs = AllSongs;
-    console.log(this.songs);
   }
   
   

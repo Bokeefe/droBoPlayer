@@ -1,7 +1,7 @@
 import {Component, Input, Output, EventEmitter, ViewChild, AfterViewInit, OnInit} from '@angular/core';
 import $ from 'jquery/dist/jquery';
 import { PlaylistService } from  '../shared/playlist.service';
-
+import {AllSongs} from '../../assets/dummy';
 function _windowWrapper() {
     return window;
 }
@@ -19,6 +19,8 @@ export class AudioComponent implements AfterViewInit, OnInit{
     private startTransition: any;
     private interval: any;
     public list: any;
+    public nowPlaying : string;
+    private random : boolean;
 
     /**
      * @Input -> custom properties.
@@ -26,11 +28,9 @@ export class AudioComponent implements AfterViewInit, OnInit{
      */
 
     /** Programmatically buttons. */
-    constructor(public playlist:PlaylistService){
-        console.log('../.'+this.playlist.songs[29].srcpath);
-
+    constructor(public _playlist:PlaylistService){        
     }
-    songs = [];
+
     
     @Input() playButton: boolean = false;
     @Input() pauseButton: boolean = false;
@@ -38,7 +38,7 @@ export class AudioComponent implements AfterViewInit, OnInit{
     @Input() muteButton: boolean = false;
     /** Array of audio tracks.*/
     
-    @Input() src: Array<string> = ['../.'+this.playlist.songs[29].srcpath];
+    @Input() src: Array<string> = ['../../assets/audio/'+this._playlist.songs[this.getRandomSong()].srcpath];
     /** Display or not the controls, default: true */
     @Input() controls: boolean = true;
     /** Set autoplay status, default true. */
@@ -78,17 +78,11 @@ export class AudioComponent implements AfterViewInit, OnInit{
 
     ngOnInit() {
         /** Init player with the first occurrence of src's array. */
-        const blaylist = [];
-        let plongs = this.songs;
-        for (var i = 0; i < plongs.length;++i ){
-            blaylist.push(plongs[i].srcpath);
-        }
-        this.songs = plongs;
         if (this.src.length) {
-            
             this.list = this.src[this.startPosition];
-
-     }
+            this.player.nativeElement.defaultPlaybackRate = .5;
+           
+        }
     }
 
     ngAfterViewInit() {
@@ -143,6 +137,7 @@ export class AudioComponent implements AfterViewInit, OnInit{
         } else {
             if(this.player.nativeElement.paused){
                 this.player.nativeElement.playbackRate = .5;
+                
                 this.player.nativeElement.play();
                 $('#playPause').toggleClass('fa-pause-circle-o');
     
@@ -165,12 +160,16 @@ export class AudioComponent implements AfterViewInit, OnInit{
     }
 
     nextTrack(): void {
-        /** If last track, then do nothing. */
-        if (this.src.indexOf(this.player.nativeElement.src) >= this.src.length - 1) { return; }
+        // /** If last track, then do nothing. */
+        // if (this.src.indexOf(this.player.nativeElement.src) >= this.src.length - 1) { return; }
 
-        /** Else, go to the next element in track's array. */
-        this.player.nativeElement.src = this.src[this.src.indexOf(this.player.nativeElement.src) + 1];
-            //this.src[this.src.indexOf(this.player.nativeElement.src) + 1]
+        // /** Else, go to the next element in track's array. */
+        // this.player.nativeElement.src = this.src[this.src.indexOf(this.player.nativeElement.src) + 1];
+        // this.src[this.src.indexOf(this.player.nativeElement.src) + 1]
+        this.player.nativeElement.src = "../../assets/audio/01 - I Believe In Santa Claus.mp3";
+        this.player.nativeElement.play();
+        $('#playPause').toggleClass('fa-pause-circle-o');
+        
     }
 
     /** Audio Transitions */
@@ -231,10 +230,12 @@ export class AudioComponent implements AfterViewInit, OnInit{
             volume: this.player.nativeElement.volume
         });
     }
-    newSong(i){
-        
-        console.log(i);
-        
-
-      }
+    getRandomSong(){
+        let randSong =  Math.floor(Math.random() * this._playlist.songs.length);
+        this.nowPlaying = JSON.stringify(this._playlist.songs[randSong].srcpath);
+        return randSong;
+    }
+    playlistPlay(trackNumer){
+        console.log(trackNumer);
+    }
 }

@@ -1,8 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 @import "../node_modules/font-awesome/css/font-awesome.css"; 
-
+body {
+    /* padding-top:180px; */
+}
 input[type=range]{
+    width:100%;
     -webkit-appearance: none;
     padding: 25px;
     background:rgba(255,255,255,0);
@@ -30,7 +33,31 @@ input[type=range]::-webkit-slider-thumb {
 input[type=range]:focus {
     outline: none;
 }
-
+.navbar-fixed-top{
+    position:fixed;
+}
 a{
     font-size: 40px;
+}
+.now-playing > span {
+    color:#fff;
+    text-align: center;
+    font-size:26px;
+}
+
+table{
+    /* position: fixed; */
+
+}
+#nav {
+    text-align: center;
+    min-width: 500px;
+}
+#nav:after {
+    content: '';
+    display: inline-block;
+    width: 100%;
+}
+#nav li {
+    display: inline-block;
 }

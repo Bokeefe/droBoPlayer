@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { ViewChild } from '@angular/core';
+// angular
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {Http, HttpModule} from '@angular/http';
+
+// services
 import { PlaylistService } from '../shared/playlist.service';
-import 'rxjs/Rx';
+import { PlayerSevice } from '../shared/player.service';
+
 import { AllSongs } from '../../assets/dummy';
 import { AudioComponent } from '../controls/controls.component';
 
@@ -16,14 +19,17 @@ import { AudioComponent } from '../controls/controls.component';
 export class PlaylistComponent implements OnInit {
   public songs : any;
 
-    constructor(public playlist:PlaylistService){}
+    constructor(public _playlist:PlaylistService,
+                public _player:PlayerSevice){}
 
 
     ngOnInit() {
-    console.dir(this.songs);
-    this.songs = this.playlist.songs;
+      this.songs = this._playlist.songs;
     }
+    newSong(i){
+      
 
+    }
 
   }
 

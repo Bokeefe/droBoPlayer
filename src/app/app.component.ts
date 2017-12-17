@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { PlaylistService } from './shared/playlist.service';
+import { PlayerSevice } from './shared/player.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,8 +9,8 @@ import { PlaylistService } from './shared/playlist.service';
 })
 export class AppComponent {
   title = 'app';
-constructor(private playlist:PlaylistService ){console.log(this.playlist)}
-  provingThings(){
-    //console.log(this.playlist);
-  }
+  constructor(private _playlist:PlaylistService,
+              private _player:PlayerSevice ){
+              }
+  
 }

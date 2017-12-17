@@ -2,7 +2,7 @@
 import { Injectable, Input, Output, Component, EventEmitter, ViewChild } from '@angular/core';
 
 // services
-import {PlaylistService} from './playlist.service';
+import { PlaylistService } from './playlist.service';
 
 declare var jquery:any;
 declare var $ :any;
@@ -10,12 +10,6 @@ declare var $ :any;
 function _windowWrapper() {
     return window;
 }
-
-@Component({
-    selector: 'audio-component',
-    templateUrl: './controls.component.html',
-    providers:[PlaylistService]
-})
 
 @Injectable()
 export class PlayerSevice {
@@ -25,16 +19,18 @@ export class PlayerSevice {
     private startTransition: any;
     private interval: any;
     public list: any;
-
+    public playlistArray: Array<string>;
     /**
      * @Input -> custom properties.
      *
      */
 
     /** Programmatically buttons. */
-    constructor(public playlist:PlaylistService){
-        console.log('../.'+this.playlist.songs[29].srcpath);
-
+    constructor(public _playlist:PlaylistService){
+     this.playlistArray = [];
+        this._playlist.songs.forEach(element => {
+            this.playlistArray.push(element.srcpath);
+        });
     }
     songs = [];
     
@@ -43,8 +39,7 @@ export class PlayerSevice {
     @Input() selectableButton: boolean = false;
     @Input() muteButton: boolean = false;
     /** Array of audio tracks.*/
-    
-    @Input() src: Array<string> = ['../.'+this.playlist.songs[29].srcpath];
+    @Input() src: Array<string> = ["../assets/audio/01 - Bring A Torch Jeanette Isabella - Brian Dunning.mp3"];
     /** Display or not the controls, default: true */
     @Input() controls: boolean = true;
     /** Set autoplay status, default true. */
@@ -72,7 +67,7 @@ export class PlayerSevice {
      * @type {EventEmitter}
      */
     /** Emit the playlist. */
-    //@Output() playlist = new EventEmitter();
+    @Output() playlist = new EventEmitter();
     /** Emit informations on the current video. */
     @Output() current = new EventEmitter();
     /** Emit the progress status of audio dowloading. */
@@ -83,23 +78,15 @@ export class PlayerSevice {
     @ViewChild('audioplayer') player;
 
     ngOnInit() {
-        /** Init player with the first occurrence of src's array. */
-        const blaylist = [];
-        let plongs = this.songs;
-        for (var i = 0; i < plongs.length;++i ){
-            blaylist.push(plongs[i].srcpath);
-        }
-        this.songs = plongs;
-        if (this.src.length) {
-            
-            this.list = this.src[this.startPosition];
+        console.log(this._playlist[0]);
 
-     }
     }
 
     ngAfterViewInit() {
         if (this.transitionEnd) {
-            this.player.nativeElement.addEventListener('play', () => this.audioTransition(this.player.nativeElement.duration, this.player.nativeElement.currentTime));
+            this.player.nativeElement.addEventListener('play', () => this.audioTransition(
+                this.player.nativeElement.duration, this.player.nativeElement.currentTime
+            ));
         }
 
         this.player.nativeElement.addEventListener('ended', () => {
@@ -176,7 +163,9 @@ export class PlayerSevice {
 
         /** Else, go to the next element in track's array. */
         this.player.nativeElement.src = this.src[this.src.indexOf(this.player.nativeElement.src) + 1];
-            //this.src[this.src.indexOf(this.player.nativeElement.src) + 1]
+        //this.src[this.src.indexOf(this.player.nativeElement.src) + 1]
+        
+
     }
 
     /** Audio Transitions */
@@ -237,11 +226,5 @@ export class PlayerSevice {
             volume: this.player.nativeElement.volume
         });
     }
-    newSong(i){
-        
-        console.log(i);
-        
-
-      }
-
+   
 }

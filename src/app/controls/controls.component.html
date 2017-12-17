@@ -1,12 +1,14 @@
  <nav class="navbar navbar-toggleable-sm navbar-inverse navbar-fixed-top">
-  <div class="container-fluid">
+  <div class="container-fluid controls">
     <ul class="nav navbar-nav">
       <li><a href="#"><i class="fa fa-backward " (click)="provingThings()" aria-hidden="true"></i></a></li>
+      <li><a href="#"><i class="fa fa-random " (click)="provingThings()" aria-hidden="true"></i></a></li>
       <li><a href="#"><i class="fa fa-play-circle-o " id="playPause" aria-hidden="true" (click)="playPause()" ></i></a></li>
       <li><a href="#"><i class="fa fa-forward" (click)="nextTrack()" aria-hidden="true"></i></a></li>
       <li></li>
     </ul><br>
     <input id="slider" (change)="getPlayBackSpeed()" value="50" type="range" min="50" max="100" >
+    <div class="now-playing"><span>{{this.nowPlaying}}</span></div>
   </div>
 </nav>
  <audio #audioplayer

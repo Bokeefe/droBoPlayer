@@ -17,7 +17,8 @@ const fs = require("fs");
     const tracks = fs.readdirSync(srcpath).filter(item => !(/(^|\/)\.[^\/\.]/g).test(item));
     let tags = tracks.map((item)=>{
       let info =  nodeID3.read(srcpath+item);
-      info.srcpath = srcpath+item;
+      console.log(item);
+      info.srcpath = item;
       delete info.trackNumber;
       delete info.encodedBy;
       delete info.comment;

@@ -3,9 +3,10 @@ import {Component, Input, Output, EventEmitter, ViewChild, AfterViewInit, OnInit
 
 // services
 import { PlaylistService } from  '../shared/playlist.service';
-import { PlayerService } from '../shared/player.service';
+import { AudioPlayerService } from '../shared/audio-player.service';
 // libraries
 import $ from 'jquery/dist/jquery';
+import { PlaylistComponent } from '../playlist/playlist.component';
 
 @Component({
     selector: 'app-header',
@@ -15,13 +16,16 @@ import $ from 'jquery/dist/jquery';
   })
   
   export class HeaderComponent implements OnInit {
+    constructor(private _playlist:PlaylistComponent){
       
+    }
     ngOnInit(){}
 
     backTrack(i){
 
     }
-    playPause(i){
+    playPause(){
+      console.log();
 
     }
     random(){

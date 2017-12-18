@@ -6,8 +6,8 @@ import { AudioComponent } from './controls/controls.component';
 import { PlaylistComponent } from './playlist/playlist.component';
 import { FooterComponent } from './footer/footer.component';
 import { PlaylistService } from './shared/playlist.service';
-import { PlayerSevice } from './shared/player.service';
 import { HeaderComponent } from './header/header.component';
+import { AudioPlayerService } from './shared/audio-player.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,7 @@ import { HeaderComponent } from './header/header.component';
     BrowserModule,
     HttpModule
   ],
-  providers: [ PlaylistService, PlayerSevice, AudioComponent, HeaderComponent],
+  providers: [ PlaylistService, AudioPlayerService, AudioComponent, HeaderComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
